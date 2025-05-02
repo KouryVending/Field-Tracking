@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check-In: MIT SCC</title>
+  <script>
+    function submitWithLocation() {
+      if (!navigator.geolocation) {
+        alert("Geolocation is not supported by your browser.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        const lat = pos.coords.latitude.toFixed(6);
+        const lng = pos.coords.longitude.toFixed(6);
+        const gps = lat + "," + lng;
+
+        const formURL = `https://docs.google.com/forms/d/e/1FAIpQLSe0gjDBCkXBQSWT59J3B6YVSUWXZTv2cvCnJcr3JM4Ud38Pkg/viewform?entry.179900295=Service+Vending+Machine&entry.1912530771=MIT+SCC&entry.1354044478=` + encodeURIComponent(gps);
+        window.location.href = formURL;
+      }, function(err) {
+        alert("Error getting location: " + err.message);
+      });
+    }
+  </script>
+</head>
+<body onload="submitWithLocation()">
+  <h2>Submitting your check-in for MIT SCC…</h2>
+  <p>If you are not redirected, please make sure location services are enabled.</p>
+</body>
+</html>
